@@ -37,25 +37,77 @@
         "FROM\n",
         "    gold_supply_stats"
       ]
+    },
+    {
+      "name": "6165c38b",
+      "displayName": "Untitled dataset",
+      "queryLines": [
+        "-- CELL: Market Trends\n",
+        "-- -----------------------------------------------------\n",
+        "-- Produces dataset for Line Chart\n",
+        "--\n",
+        "SELECT\n",
+        "    year,\n",
+        "    month,\n",
+        "    total_sales_aed,\n",
+        "    CONCAT(year, '-', LPAD(month, 2, '0')) AS year_month\n",
+        "FROM\n",
+        "    gold_sales_overview\n",
+        "ORDER BY\n",
+        "    month"
+      ]
+    },
+    {
+      "name": "755259e3",
+      "displayName": "Untitled dataset",
+      "queryLines": [
+        "-- CELL: Top Hotspots\n",
+        "-- -----------------------------------------------------\n",
+        "-- Produces dataset for Bar Chart\n",
+        "--\n",
+        "SELECT\n",
+        "    area_name,\n",
+        "    total_volume_aed\n",
+        "FROM\n",
+        "    gold_area_stats\n",
+        "ORDER BY\n",
+        "    total_volume_aed DESC\n",
+        "    LIMIT 10"
+      ]
+    },
+    {
+      "name": "00bc3f54",
+      "displayName": "Untitled dataset",
+      "queryLines": [
+        "-- CELL: Supply Inventory\n",
+        "-- -----------------------------------------------------\n",
+        "-- Produces dataset for Pie Chart\n",
+        "--\n",
+        "SELECT\n",
+        "    room_type,\n",
+        "    unit_count\n",
+        "FROM\n",
+        "    gold_supply_stats"
+      ]
     }
   ],
   "pages": [
     {
       "name": "191cf6a8",
-      "displayName": "Pulse - Past 12 Months",
+      "displayName": "Pulse Dashboard",
       "layout": [
         {
           "widget": {
-            "name": "ff8c1f99",
+            "name": "69f73f07",
             "queries": [
               {
                 "name": "main_query",
                 "query": {
-                  "datasetName": "ecae2a8a",
+                  "datasetName": "6165c38b",
                   "fields": [
                     {
-                      "name": "month",
-                      "expression": "`month`"
+                      "name": "year_month",
+                      "expression": "`year_month`"
                     },
                     {
                       "name": "sum(total_sales_aed)",
@@ -70,7 +122,7 @@
               "frame": {
                 "showTitle": true,
                 "title": {
-                  "value": "Visualization 1",
+                  "value": "Market Trends",
                   "fields": []
                 }
               },
@@ -81,9 +133,9 @@
               "widgetType": "line",
               "encodings": {
                 "x": {
-                  "fieldName": "month",
+                  "fieldName": "year_month",
                   "scale": {
-                    "type": "quantitative"
+                    "type": "categorical"
                   }
                 },
                 "y": {
@@ -102,26 +154,26 @@
           "position": {
             "x": 0,
             "y": 0,
-            "width": 9,
+            "width": 12,
             "height": 6
           }
         },
         {
           "widget": {
-            "name": "1e37983b",
+            "name": "a1f7675b",
             "queries": [
               {
-                "name": "main_query",
+                "name": "366e287fb432433dbb54aa121500f4ea",
                 "query": {
-                  "datasetName": "38ebb027",
+                  "datasetName": "755259e3",
                   "fields": [
-                    {
-                      "name": "sum(total_volume_aed)",
-                      "expression": "SUM(`total_volume_aed`)"
-                    },
                     {
                       "name": "area_name",
                       "expression": "`area_name`"
+                    },
+                    {
+                      "name": "column_106763b2155",
+                      "expression": "SUM(`total_volume_aed`)"
                     }
                   ],
                   "disaggregated": false
@@ -129,50 +181,30 @@
               }
             ],
             "spec": {
-              "frame": {
-                "showTitle": true,
-                "title": {
-                  "value": "Visualization 2",
-                  "fields": []
-                }
-              },
-              "version": 3,
-              "widgetType": "bar",
-              "encodings": {
-                "x": {
-                  "fieldName": "sum(total_volume_aed)",
-                  "displayName": "total_volume_aed",
-                  "scale": {
-                    "type": "quantitative"
-                  }
-                },
-                "y": {
-                  "fieldName": "area_name",
-                  "scale": {
-                    "type": "categorical"
-                  }
-                }
-              },
-              "data": {
-                "queryName": "main_query"
+              "version": 0,
+              "viz_spec": {
+                "display_name": "Top Hotspots",
+                "viz_type": "CHART",
+                "serialized_options": "{\"series\":{\"error_y\":{\"type\":\"data\",\"visible\":true},\"stacking\":null},\"coefficient\":1,\"yAxis\":[{\"type\":\"-\"},{\"opposite\":true,\"type\":\"-\"}],\"columnConfigurationMap\":{\"x\":{\"column\":\"area_name\",\"id\":\"column_106763b2154\"},\"y\":[{\"column\":\"total_volume_aed\",\"id\":\"column_106763b2155\",\"transform\":\"SUM\"}]},\"alignYAxesAtZero\":true,\"direction\":{\"type\":\"counterclockwise\"},\"swappedAxes\":true,\"percentFormat\":\"0[.]00%\",\"textFormat\":\"\",\"legend\":{\"traceorder\":\"normal\"},\"globalSeriesType\":\"column\",\"version\":2,\"sizemode\":\"diameter\",\"seriesOptions\":{\"column_106763b2155\":{\"name\":\"total_volume_aed\",\"yAxis\":0}},\"error_y\":{\"type\":\"data\",\"visible\":true},\"sortX\":true,\"showDataLabels\":false,\"missingValuesAsZero\":true,\"useAggregationsUi\":true,\"numberFormat\":\"0,0.[00000]\",\"dateTimeFormat\":\"DD/MM/YYYY HH:mm\",\"sortY\":true,\"valuesOptions\":{},\"xAxis\":{\"labels\":{\"enabled\":true},\"type\":\"-\"}}",
+                "query_name": "366e287fb432433dbb54aa121500f4ea"
               }
             }
           },
           "position": {
             "x": 0,
             "y": 6,
-            "width": 6,
+            "width": 8,
             "height": 6
           }
         },
         {
           "widget": {
-            "name": "75bc5804",
+            "name": "32674122",
             "queries": [
               {
                 "name": "bf1bc1dfa4254e8dbf2e6a8dbf5693b3",
                 "query": {
-                  "datasetName": "f9845d6b",
+                  "datasetName": "00bc3f54",
                   "fields": [
                     {
                       "name": "room_type",
@@ -190,7 +222,7 @@
             "spec": {
               "version": 0,
               "viz_spec": {
-                "display_name": "Visualization 3",
+                "display_name": "Supply Inventory",
                 "viz_type": "CHART",
                 "serialized_options": "{\"series\":{\"error_y\":{\"type\":\"data\",\"visible\":true},\"stacking\":null},\"coefficient\":1,\"yAxis\":[{\"type\":\"-\"},{\"opposite\":true,\"type\":\"-\"}],\"columnConfigurationMap\":{\"x\":{\"column\":\"room_type\",\"id\":\"column_106763b2161\"},\"y\":[{\"column\":\"unit_count\",\"id\":\"column_106763b2162\",\"transform\":\"SUM\"}]},\"alignYAxesAtZero\":true,\"direction\":{\"type\":\"counterclockwise\"},\"swappedAxes\":false,\"percentFormat\":\"0[.]00%\",\"textFormat\":\"\",\"legend\":{\"traceorder\":\"normal\"},\"globalSeriesType\":\"pie\",\"version\":2,\"sizemode\":\"diameter\",\"seriesOptions\":{\"column_106763b2162\":{\"name\":\"unit_count\",\"type\":\"pie\",\"yAxis\":0}},\"error_y\":{\"type\":\"data\",\"visible\":true},\"sortX\":true,\"showDataLabels\":true,\"missingValuesAsZero\":true,\"useAggregationsUi\":true,\"numberFormat\":\"0,0.[00000]\",\"dateTimeFormat\":\"DD/MM/YYYY HH:mm\",\"sortY\":true,\"valuesOptions\":{},\"xAxis\":{\"labels\":{\"enabled\":true},\"type\":\"-\"}}",
                 "query_name": "bf1bc1dfa4254e8dbf2e6a8dbf5693b3"
@@ -198,9 +230,9 @@
             }
           },
           "position": {
-            "x": 6,
+            "x": 8,
             "y": 6,
-            "width": 3,
+            "width": 4,
             "height": 6
           }
         }
