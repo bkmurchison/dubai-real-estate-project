@@ -1,46 +1,8 @@
 {
   "datasets": [
     {
-      "name": "ecae2a8a",
-      "displayName": "Monthly Sales Summary in AED Currency",
-      "queryLines": [
-        "SELECT\n",
-        "    month,\n",
-        "    total_sales_aed\n",
-        "FROM\n",
-        "    gold_sales_overview\n",
-        "ORDER BY\n",
-        "    month"
-      ]
-    },
-    {
-      "name": "38ebb027",
-      "displayName": "Untitled dataset",
-      "queryLines": [
-        "SELECT\n",
-        "    area_name,\n",
-        "    total_volume_aed\n",
-        "FROM\n",
-        "    gold_area_stats\n",
-        "ORDER BY\n",
-        "    total_volume_aed DESC\n",
-        "    LIMIT 10"
-      ]
-    },
-    {
-      "name": "f9845d6b",
-      "displayName": "Untitled dataset",
-      "queryLines": [
-        "SELECT\n",
-        "    room_type,\n",
-        "    unit_count\n",
-        "FROM\n",
-        "    gold_supply_stats"
-      ]
-    },
-    {
       "name": "6165c38b",
-      "displayName": "Untitled dataset",
+      "displayName": "Market Trends",
       "queryLines": [
         "-- CELL: Market Trends\n",
         "-- -----------------------------------------------------\n",
@@ -59,7 +21,7 @@
     },
     {
       "name": "755259e3",
-      "displayName": "Untitled dataset",
+      "displayName": "Top Hotspots",
       "queryLines": [
         "-- CELL: Top Hotspots\n",
         "-- -----------------------------------------------------\n",
@@ -77,7 +39,7 @@
     },
     {
       "name": "00bc3f54",
-      "displayName": "Untitled dataset",
+      "displayName": "Supply Inventory",
       "queryLines": [
         "-- CELL: Supply Inventory\n",
         "-- -----------------------------------------------------\n",
