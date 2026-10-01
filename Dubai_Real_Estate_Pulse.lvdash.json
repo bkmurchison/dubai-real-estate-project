@@ -1,0 +1,218 @@
+{
+  "datasets": [
+    {
+      "name": "ecae2a8a",
+      "displayName": "Monthly Sales Summary in AED Currency",
+      "queryLines": [
+        "SELECT\n",
+        "    month,\n",
+        "    total_sales_aed\n",
+        "FROM\n",
+        "    gold_sales_overview\n",
+        "ORDER BY\n",
+        "    month"
+      ]
+    },
+    {
+      "name": "38ebb027",
+      "displayName": "Untitled dataset",
+      "queryLines": [
+        "SELECT\n",
+        "    area_name,\n",
+        "    total_volume_aed\n",
+        "FROM\n",
+        "    gold_area_stats\n",
+        "ORDER BY\n",
+        "    total_volume_aed DESC\n",
+        "    LIMIT 10"
+      ]
+    },
+    {
+      "name": "f9845d6b",
+      "displayName": "Untitled dataset",
+      "queryLines": [
+        "SELECT\n",
+        "    room_type,\n",
+        "    unit_count\n",
+        "FROM\n",
+        "    gold_supply_stats"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "191cf6a8",
+      "displayName": "Pulse - Past 12 Months",
+      "layout": [
+        {
+          "widget": {
+            "name": "ff8c1f99",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "ecae2a8a",
+                  "fields": [
+                    {
+                      "name": "month",
+                      "expression": "`month`"
+                    },
+                    {
+                      "name": "sum(total_sales_aed)",
+                      "expression": "SUM(`total_sales_aed`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Visualization 1",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "mark": {
+                "layout": "layer"
+              },
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "month",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(total_sales_aed)",
+                  "displayName": "total_sales_aed",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 9,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "1e37983b",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "38ebb027",
+                  "fields": [
+                    {
+                      "name": "sum(total_volume_aed)",
+                      "expression": "SUM(`total_volume_aed`)"
+                    },
+                    {
+                      "name": "area_name",
+                      "expression": "`area_name`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Visualization 2",
+                  "fields": []
+                }
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "sum(total_volume_aed)",
+                  "displayName": "total_volume_aed",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "area_name",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "75bc5804",
+            "queries": [
+              {
+                "name": "bf1bc1dfa4254e8dbf2e6a8dbf5693b3",
+                "query": {
+                  "datasetName": "f9845d6b",
+                  "fields": [
+                    {
+                      "name": "room_type",
+                      "expression": "`room_type`"
+                    },
+                    {
+                      "name": "column_106763b2162",
+                      "expression": "SUM(`unit_count`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 0,
+              "viz_spec": {
+                "display_name": "Visualization 3",
+                "viz_type": "CHART",
+                "serialized_options": "{\"series\":{\"error_y\":{\"type\":\"data\",\"visible\":true},\"stacking\":null},\"coefficient\":1,\"yAxis\":[{\"type\":\"-\"},{\"opposite\":true,\"type\":\"-\"}],\"columnConfigurationMap\":{\"x\":{\"column\":\"room_type\",\"id\":\"column_106763b2161\"},\"y\":[{\"column\":\"unit_count\",\"id\":\"column_106763b2162\",\"transform\":\"SUM\"}]},\"alignYAxesAtZero\":true,\"direction\":{\"type\":\"counterclockwise\"},\"swappedAxes\":false,\"percentFormat\":\"0[.]00%\",\"textFormat\":\"\",\"legend\":{\"traceorder\":\"normal\"},\"globalSeriesType\":\"pie\",\"version\":2,\"sizemode\":\"diameter\",\"seriesOptions\":{\"column_106763b2162\":{\"name\":\"unit_count\",\"type\":\"pie\",\"yAxis\":0}},\"error_y\":{\"type\":\"data\",\"visible\":true},\"sortX\":true,\"showDataLabels\":true,\"missingValuesAsZero\":true,\"useAggregationsUi\":true,\"numberFormat\":\"0,0.[00000]\",\"dateTimeFormat\":\"DD/MM/YYYY HH:mm\",\"sortY\":true,\"valuesOptions\":{},\"xAxis\":{\"labels\":{\"enabled\":true},\"type\":\"-\"}}",
+                "query_name": "bf1bc1dfa4254e8dbf2e6a8dbf5693b3"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 6,
+            "width": 3,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
